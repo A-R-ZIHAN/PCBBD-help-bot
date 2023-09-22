@@ -92,8 +92,10 @@ client.on("threadCreate",async (newThread)=>{
 
 			await	interaction.channel.send({
 						content:`<@&${'1154436920424804402'}>, this guy needs help!`,
+					}).then(()=>{
+						interaction.message.delete()
 					})
-			await interaction.message.delete()
+
 			
 
 
@@ -111,8 +113,9 @@ client.on("threadCreate",async (newThread)=>{
 				await interaction.channel.send({
 					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
 					
+				}).then(()=>{
+					interaction.message.delete()
 				})
-				await interaction.message.delete()
 				
 			} 
 		}
