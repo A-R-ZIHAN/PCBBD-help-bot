@@ -111,5 +111,12 @@ client.on("threadCreate",async (newThread)=>{
 
 
 
+client.user.setPresence({
+	status: "online",
+	activity: {
+		 name: "real guys",
+		 type: "LISTENING"
+	}
+});
 
 client.login(process.env.TOKEN);
