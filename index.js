@@ -45,6 +45,7 @@ for (const file of eventFiles) {
 
 var  newThreadid;
 var row;
+var newThreadOwnerId;
 client.on("threadCreate",async (newThread)=>{
 	if(newThread.type == ChannelType.PublicThread){
 		if (newThread.parentId == '1019653016120463400' || newThread.parentId == '1154436432769851560'){
@@ -61,69 +62,63 @@ client.on("threadCreate",async (newThread)=>{
 		 
 		newThreadid = newThread.id
 		row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton)]
-
+		newThreadOwnerId = newThread.ownerId	
 		}
 	 }
 
-	 client.once("messageCreate", async (message)=>{
-		if(message.channelId == newThreadid){
-			await message.reply({
-				content: "Please click the required button to mention the type of experts you want to help you!",
-				components: row,
-				ephemeral: true
-			})
-		}
-	 })
+})
 
 
-	 client.on("interactionCreate",async (interaction)=>{
-		if(interaction.isButton()){
-			if(interaction.customId == 'MentionHardwareRoleButton'){
+client.once("messageCreate", async (message)=>{
+	if(message.channelId == newThreadid){
+		await message.reply({
+			content: "Please click the required button to mention the type of experts you want to help you!",
+			components: row,
+			ephemeral: true
+		})
+	}
+ })
 
-				if(interaction.user.id != newThread.ownerId){
 
-					await interaction.reply({
-					 content:`You are not supposed to click this!`,
-					 ephemeral: true
-				 })
-				 return
-				 
-			 }
+ client.on("interactionCreate",async (interaction)=>{
+	if(interaction.isButton()){
+		if(interaction.customId == 'MentionHardwareRoleButton' && interaction.user.id == newThreadid){
 
+			if(interaction.user.id != newThreadOwnerId){
+
+				await interaction.reply({
+				 content:`You are not supposed to click this!`,
+				 ephemeral: true
+			 })
+			 return
+			 
+		 }else{
 			await	interaction.channel.send({
-						content:`<@&${'1154436920424804402'}>, this guy needs help!`,
-					}).then(()=>{
-						interaction.message.delete()
-					})
-
-			
-
-
-			}
-			
-			if(interaction.customId == 'MentionArtsRoleButton'){
-				if(interaction.user.id != newThread.ownerId){
-					await interaction.reply({
-						content:`You are not supposed to click this!`,
-						ephemeral: true
-					})
-					return
-				}
-
+				content:`<@&${'1154436920424804402'}>, this guy needs help!`,
+			}).then(()=>{
+				interaction.message.delete()
+			})
+		 }
+		}
+		
+		if(interaction.customId == 'MentionArtsRoleButton' && interaction.user.id == newThread.ownerId){
+			if(interaction.user.id != newThreadOwnerId){
+				await interaction.reply({
+					content:`You are not supposed to click this!`,
+					ephemeral: true
+				})
+				return
+			}else{
 				await interaction.channel.send({
 					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
 					
 				}).then(()=>{
 					interaction.message.delete()
 				})
-				
-			} 
-		}
-
-	 })
-
-})
-
+			}		
+		} 
+	}
+ })
 
 
 client.login(process.env.TOKEN);
