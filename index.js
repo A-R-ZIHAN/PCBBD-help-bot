@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, GatewayIntentBits,ChannelType,ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { Client, Collection, GatewayIntentBits,ChannelType,ActionRowBuilder, ButtonBuilder, ButtonStyle,ActivityType } = require('discord.js');
 require('dotenv').config()
 const {expertRoles} = require('./info.json')
 
@@ -111,6 +111,13 @@ client.on("threadCreate",async (newThread)=>{
 
 
 
-
+client.user.setPresence({
+	 activities: [{
+		 name: 'with your weird pc',
+		 type: ActivityType.Playing
+		
+		}] 
+	
+	});
 
 client.login(process.env.TOKEN);
