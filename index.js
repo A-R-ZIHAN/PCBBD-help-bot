@@ -45,22 +45,22 @@ for (const file of eventFiles) {
 
 client.on("threadCreate",async (newThread)=>{
 	if(newThread.type == ChannelType.PublicThread){
-		if (newThread.parentId == '1154436432769851560'){
+		if (newThread.parentId == '1019653016120463400'){
 		
 		 const hardwareRoleButton = new ButtonBuilder()
 		 .setCustomId('MentionHardwareRoleButton')
 		 .setLabel(`Mentions @${Object.keys(expertRoles)[0]}`)
-		 .setStyle(ButtonStyle.Primary)
+		 .setStyle(ButtonStyle.Secondary)
 
 		 const artsRoleButton = new ButtonBuilder()
 		 .setCustomId('MentionArtsRoleButton')
 		 .setLabel(`Mentions @${Object.keys(expertRoles)[1]}`)
-		 .setStyle(ButtonStyle.Primary)
+		 .setStyle(ButtonStyle.Secondary)
 		 
 		 client.once("messageCreate", async (message)=>{
 			if(message.channelId == newThread.id){
 				await message.reply({
-					content: "Please mention the type of experts you want to help you!",
+					content: "Please click the required button to mention the type of experts you want to help you!",
 					components: [new ActionRowBuilder().addComponents(hardwareRoleButton, artsRoleButton)],
 					ephemeral: true
 				})
@@ -111,12 +111,6 @@ client.on("threadCreate",async (newThread)=>{
 
 
 
-client.user.setPresence({
-	status: "online",
-	activity: {
-		 name: "real guys",
-		 type: "LISTENING"
-	}
-});
+
 
 client.login(process.env.TOKEN);
