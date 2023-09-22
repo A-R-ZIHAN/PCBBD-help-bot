@@ -111,13 +111,4 @@ client.on("threadCreate",async (newThread)=>{
 
 
 
-client.user.setPresence({
-	 activities: [{
-		 name: 'with your weird pc',
-		 type: ActivityType.Playing
-		
-		}] 
-	
-	});
-
 client.login(process.env.TOKEN);
