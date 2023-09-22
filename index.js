@@ -82,7 +82,7 @@ client.once("messageCreate", async (message)=>{
 
  client.on("interactionCreate",async (interaction)=>{
 	if(interaction.isButton()){
-		if(interaction.customId == 'MentionHardwareRoleButton' && interaction.user.id == newThreadid){
+		if(interaction.customId == 'MentionHardwareRoleButton' && interaction.user.id == newThreadOwnerId){
 
 			if(interaction.user.id != newThreadOwnerId){
 
@@ -92,30 +92,29 @@ client.once("messageCreate", async (message)=>{
 			 })
 			 return
 			 
-		 }else{
+		 }
 			await	interaction.channel.send({
 				content:`<@&${'1154436920424804402'}>, this guy needs help!`,
 			}).then(()=>{
 				interaction.message.delete()
 			})
-		 }
 		}
 		
-		if(interaction.customId == 'MentionArtsRoleButton' && interaction.user.id == newThread.ownerId){
+		
+		if(interaction.customId == 'MentionArtsRoleButton' && interaction.user.id == newThreadOwnerId){
 			if(interaction.user.id != newThreadOwnerId){
 				await interaction.reply({
 					content:`You are not supposed to click this!`,
 					ephemeral: true
 				})
 				return
-			}else{
+			}
 				await interaction.channel.send({
 					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
 					
 				}).then(()=>{
 					interaction.message.delete()
-				})
-			}		
+				})	
 		} 
 	}
  })
