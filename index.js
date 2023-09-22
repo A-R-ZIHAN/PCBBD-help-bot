@@ -60,12 +60,12 @@ client.on("threadCreate",async (newThread)=>{
 		 .setStyle(ButtonStyle.Secondary)
 		 
 		newThreadid = newThread.id
-		 var row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton)]
+		row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton)]
 
 		}
 	 }
 
-	 client.on("messageCreate", async (message)=>{
+	 client.once("messageCreate", async (message)=>{
 		if(message.channelId == newThreadid){
 			await message.reply({
 				content: "Please click the required button to mention the type of experts you want to help you!",
