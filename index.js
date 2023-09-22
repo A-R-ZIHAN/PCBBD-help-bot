@@ -63,21 +63,23 @@ client.on("threadCreate",async (newThread)=>{
 		newThreadid = newThread.id
 		row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton)]
 		newThreadOwnerId = newThread.ownerId	
+
+		client.once("messageCreate", async (message)=>{
+			if(message.channelId == newThreadid){
+				await message.reply({
+					content: "Please click the required button to mention the type of experts you want to help you!",
+					components: row,
+					ephemeral: true
+				})
+			}
+		 })
 		}
 	 }
 
 })
 
 
-client.once("messageCreate", async (message)=>{
-	if(message.channelId == newThreadid){
-		await message.reply({
-			content: "Please click the required button to mention the type of experts you want to help you!",
-			components: row,
-			ephemeral: true
-		})
-	}
- })
+
 
 
  client.on("interactionCreate",async (interaction)=>{
