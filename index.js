@@ -86,38 +86,37 @@ client.on("threadCreate",async (newThread)=>{
 	if(interaction.isButton()){
 		if(interaction.customId == 'MentionHardwareRoleButton' && interaction.user.id == newThreadOwnerId){
 
-			if(interaction.user.id != newThreadOwnerId){
-
-				await interaction.reply({
-				 content:`You are not supposed to click this!`,
-				 ephemeral: true
-			 })
-			 return
-			 
-		 }
 			await	interaction.channel.send({
 				content:`<@&${'1154436920424804402'}>, this guy needs help!`,
 			}).then(()=>{
 				interaction.message.delete()
 			})
-		}
+		}else if(interaction.user.id != newThreadOwnerId){
+
+			await interaction.reply({
+			 content:`You are not supposed to click this!`,
+			 ephemeral: true
+		 })
+		 return
+		 
+	 }
 		
 		
 		if(interaction.customId == 'MentionArtsRoleButton' && interaction.user.id == newThreadOwnerId){
-			if(interaction.user.id != newThreadOwnerId){
-				await interaction.reply({
-					content:`You are not supposed to click this!`,
-					ephemeral: true
-				})
-				return
-			}
+			
 				await interaction.channel.send({
 					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
 					
 				}).then(()=>{
 					interaction.message.delete()
 				})	
-		} 
+		}else if(interaction.user.id != newThreadOwnerId){
+			await interaction.reply({
+				content:`You are not supposed to click this!`,
+				ephemeral: true
+			})
+			return
+		}
 	}
  })
 
