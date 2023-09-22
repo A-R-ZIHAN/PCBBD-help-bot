@@ -43,7 +43,9 @@ for (const file of eventFiles) {
 	}
 }
 
-client.once("threadCreate",async (newThread)=>{
+var  newThreadid;
+var row;
+client.on("threadCreate",async (newThread)=>{
 	if(newThread.type == ChannelType.PublicThread){
 		if (newThread.parentId == '1019653016120463400' || newThread.parentId == '1154436432769851560'){
 		
@@ -54,23 +56,25 @@ client.once("threadCreate",async (newThread)=>{
 
 		 const artsRoleButton = new ButtonBuilder()
 		 .setCustomId('MentionArtsRoleButton')
-		 .setLabel(`Mentions @${Object.keys(expertRoles)[0]}`)
+		 .setLabel(`Mentions @${Object.keys(expertRoles)[1]}`)
 		 .setStyle(ButtonStyle.Secondary)
 		 
-		 client.once("messageCreate", async (message)=>{
-			if(message.channelId == newThread.id){
-				await message.reply({
-					content: "Please click the required button to mention the type of experts you want to help you!",
-					components: [new ActionRowBuilder().addComponents(artsRoleButton)],
-					ephemeral: true
-				})
-			}
-		 })
-
+		newThreadid = newThread.id
+		 var row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton)]
 
 		}
 	 }
-	 
+
+	 client.once("messageCreate", async (message)=>{
+		if(message.channelId == newThreadid){
+			await message.reply({
+				content: "Please click the required button to mention the type of experts you want to help you!",
+				components: row,
+				ephemeral: true
+			})
+		}
+	 })
+
 
 	 client.on("interactionCreate",async (interaction)=>{
 		if(interaction.isButton()){
@@ -90,7 +94,7 @@ client.once("threadCreate",async (newThread)=>{
 						content:`<@&${'1154436920424804402'}>, this guy needs help!`,
 					})
 			await interaction.message.delete()
-			return
+			
 
 
 			}
@@ -109,7 +113,7 @@ client.once("threadCreate",async (newThread)=>{
 					
 				})
 				await interaction.message.delete()
-				return
+				
 			} 
 		}
 
