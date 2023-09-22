@@ -54,14 +54,14 @@ client.once("threadCreate",async (newThread)=>{
 
 		 const artsRoleButton = new ButtonBuilder()
 		 .setCustomId('MentionArtsRoleButton')
-		 .setLabel(`Mentions @${Object.keys(expertRoles)[1]}`)
+		 .setLabel(`Mentions @${Object.keys(expertRoles)[0]}`)
 		 .setStyle(ButtonStyle.Secondary)
 		 
 		 client.once("messageCreate", async (message)=>{
 			if(message.channelId == newThread.id){
 				await message.reply({
 					content: "Please click the required button to mention the type of experts you want to help you!",
-					components: [new ActionRowBuilder().addComponents(hardwareRoleButton, artsRoleButton)],
+					components: [new ActionRowBuilder().addComponents(artsRoleButton)],
 					ephemeral: true
 				})
 			}
@@ -105,7 +105,7 @@ client.once("threadCreate",async (newThread)=>{
 				}
 
 				await interaction.channel.send({
-					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
+					content:`<@&${'1154436920424804402'}>, this guy needs help!`,
 					
 				})
 				await interaction.message.delete()
