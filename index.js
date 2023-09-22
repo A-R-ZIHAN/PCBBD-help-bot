@@ -43,7 +43,7 @@ for (const file of eventFiles) {
 	}
 }
 
-client.on("threadCreate",async (newThread)=>{
+client.once("threadCreate",async (newThread)=>{
 	if(newThread.type == ChannelType.PublicThread){
 		if (newThread.parentId == '1019653016120463400' || newThread.parentId == '1154436432769851560'){
 		
