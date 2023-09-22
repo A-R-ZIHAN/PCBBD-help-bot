@@ -45,7 +45,7 @@ for (const file of eventFiles) {
 
 client.on("threadCreate",async (newThread)=>{
 	if(newThread.type == ChannelType.PublicThread){
-		if (newThread.parentId == '1019653016120463400'){
+		if (newThread.parentId == '1019653016120463400' || newThread.parentId == '1154436432769851560'){
 		
 		 const hardwareRoleButton = new ButtonBuilder()
 		 .setCustomId('MentionHardwareRoleButton')
