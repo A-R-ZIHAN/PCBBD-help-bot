@@ -65,7 +65,7 @@ client.on("threadCreate",async (newThread)=>{
 		}
 	 }
 
-	 client.once("messageCreate", async (message)=>{
+	 client.on("messageCreate", async (message)=>{
 		if(message.channelId == newThreadid){
 			await message.reply({
 				content: "Please click the required button to mention the type of experts you want to help you!",
@@ -109,7 +109,7 @@ client.on("threadCreate",async (newThread)=>{
 				}
 
 				await interaction.channel.send({
-					content:`<@&${'1154436920424804402'}>, this guy needs help!`,
+					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
 					
 				})
 				await interaction.message.delete()
