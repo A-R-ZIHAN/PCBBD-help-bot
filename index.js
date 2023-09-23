@@ -61,7 +61,7 @@ client.on("threadCreate",async (newThread)=>{
 		 .setStyle(ButtonStyle.Secondary)
 		 
 		 const buildpcRoleButton = new ButtonBuilder()
-		 .setCustomId('MentionArtsRoleButton')
+		 .setCustomId('buildpcRoleButton')
 		 .setLabel(`Build A PC`)
 		 .setStyle(ButtonStyle.Secondary)
 		 
