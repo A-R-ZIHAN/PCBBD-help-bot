@@ -60,14 +60,19 @@ client.on("threadCreate",async (newThread)=>{
 		 .setLabel(`Mentions @${Object.keys(expertRoles)[1]}`)
 		 .setStyle(ButtonStyle.Secondary)
 		 
+		 const buildpcRoleButton = new ButtonBuilder()
+		 .setCustomId('MentionArtsRoleButton')
+		 .setLabel(`Build A PC`)
+		 .setStyle(ButtonStyle.Secondary)
+		 
 		newThreadid = newThread.id
-		row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton)]
+		row = 	 [new ActionRowBuilder().addComponents(hardwareRoleButton,artsRoleButton, buildpcRoleButton)]
 		newThreadOwnerId = newThread.ownerId	
 
 		client.once("messageCreate", async (message)=>{
 			if(message.channelId == newThreadid){
 				await message.reply({
-					content: "Please click the required button to mention the type of experts you want to help you!",
+					content: "Please click the required button to mention the type of experts or services you want to get help with!",
 					components: row,
 					ephemeral: true
 				})
@@ -99,6 +104,14 @@ client.on("threadCreate",async (newThread)=>{
 			}).then(()=>{
 				interaction.message.delete()
 			})	
+	}else if(interaction.customId == 'buildpcRoleButton' && interaction.user.id == newThreadOwnerId){
+		await interaction.reply({
+			content:`Please mention if you want to build with monitor or not. Does it include any other peripherals like keyboard, mouse etc.? Also don't forget to mention your budget. The <@&${'1154437163044307114'}> gang is on their way!`,
+			
+		}).then(()=>{
+			interaction.message.delete()
+		})	
+
 	}else if(interaction.user.id != newThreadOwnerId){
 			await interaction.reply({
 				content:`You are not supposed to click this!`,
