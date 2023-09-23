@@ -91,26 +91,15 @@ client.on("threadCreate",async (newThread)=>{
 			}).then(()=>{
 				interaction.message.delete()
 			})
-		}else if(interaction.user.id != newThreadOwnerId){
-
-			await interaction.reply({
-			 content:`You are not supposed to click this!`,
-			 ephemeral: true
-		 })
-		 return
-		 
-	 }
-		
-		
-		if(interaction.customId == 'MentionArtsRoleButton' && interaction.user.id == newThreadOwnerId){
+		}else if(interaction.customId == 'MentionArtsRoleButton' && interaction.user.id == newThreadOwnerId){
 			
-				await interaction.channel.send({
-					content:`<@&${'1154437163044307114'}>, this guy needs help!`,
-					
-				}).then(()=>{
-					interaction.message.delete()
-				})	
-		}else if(interaction.user.id != newThreadOwnerId){
+			await interaction.channel.send({
+				content:`<@&${'1154437163044307114'}>, this guy needs help!`,
+				
+			}).then(()=>{
+				interaction.message.delete()
+			})	
+	}else if(interaction.user.id != newThreadOwnerId){
 			await interaction.reply({
 				content:`You are not supposed to click this!`,
 				ephemeral: true
