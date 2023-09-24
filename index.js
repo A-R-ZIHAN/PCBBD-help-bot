@@ -106,7 +106,7 @@ client.on("threadCreate",async (newThread)=>{
 			})	
 	}else if(interaction.customId == 'buildpcRoleButton' && interaction.user.id == newThreadOwnerId){
 		await interaction.channel.send({
-			content:`Please mention if you want to build with a monitor or not. Does it include any other peripherals like a keyboard, mouse, etc.? Also, don't forget to mention your budget. The <@&${'1154437163044307114'}> gang is on their way!`,
+			content:`Please mention if you want to build with a monitor or not. Does it include any other peripherals like a keyboard, mouse, etc.? Also, don't forget to mention your budget. The <@&${'1154436920424804402'}> gang is on their way!`,
 			
 		}).then(()=>{
 			interaction.message.delete()
